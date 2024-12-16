@@ -1,7 +1,10 @@
+---
 blueprint:
   name: Z-Wave JS - Heatit Z Push Button 8
-  description: 'Create automations for Heatit 8-Button Wall Controller [HEATIT-ZPUSH8](https://documents.heatit.com/4512581)
-    using the Z-Wave JS integration.
+  description: >
+    Create automations for Heatit 8-Button Wall Controller
+    [HEATIT-ZPUSH8](https://documents.heatit.com/4512581) using the Z-Wave JS
+    integration.
 
     The buttons are labelled assuming the LED is positioned at the top of the device.
 
@@ -12,8 +15,6 @@ blueprint:
     * Held Down
 
     * Released
-
-    '
   domain: automation
   input:
     zwavejs_device:
@@ -39,8 +40,8 @@ blueprint:
         action: {}
     I1_key_released:
       name: ON (I) Released
-      description: Action to run when Top Row ON (I) button is released after being held
-        down.
+      description: Action to run when Top Row ON (I) button is released after being
+        held down.
       default: []
       selector:
         action: {}
@@ -58,8 +59,8 @@ blueprint:
         action: {}
     O1_key_released:
       name: Top OFF (O) Released
-      description: Action to run when Top Row OFF (O) button is released after being held
-        down.
+      description: Action to run when Top Row OFF (O) button is released after being
+        held down.
       default: []
       selector:
         action: {}
@@ -96,8 +97,8 @@ blueprint:
         action: {}
     O2_key_released:
       name: Second Row OFF (O) Released
-      description: Action to run when Second Row OFF (O) button is released after being
-        held down.
+      description: Action to run when Second Row OFF (O) button is released after
+        being held down.
       default: []
       selector:
         action: {}
@@ -172,8 +173,8 @@ blueprint:
         action: {}
     O4_key_released:
       name: Bottom Row OFF (O) Released
-      description: Action to run when Bottom Row OFF (O) button is released after being
-        held down.
+      description: Action to run when Bottom Row OFF (O) button is released after
+        being held down.
       default: []
       selector:
         action: {}
@@ -181,224 +182,224 @@ blueprint:
 mode: single
 max_exceeded: silent
 trigger:
-- platform: event
-  event_type: zwave_js_value_notification
+  - platform: event
+    event_type: zwave_js_value_notification
 variables:
   logger: blueprint.zwavejs_scene_activation
-  zwavejs_device: !input zwavejs_device
-  button_selector: !input button_selector
+  zwavejs_device: zwavejs_device
+  button_selector: button_selector
   button: Scene 00{{button_selector}}
 action:
   - variables:
       button_map:
-        001: I1
-        002: O1
-        003: I2
-        004: O2
-        005: I3
-        006: O3
-        007: I4
-        008: O4
+        "1": I1
+        "2": O1
+        "3": I2
+        "4": O2
+        "5": I3
+        "6": O3
+        "7": I4
+        "8": O4
   - choose:
-    - conditions:
-      - condition: template
-        value_template: >
-          {{
-            trigger.event.data.device_id == zwavejs_device and
-            button_map[trigger.event.data.property_key_name] is defined
-          }}
-      sequence:
-      - choose:
-        - conditions:
+      - conditions:
           - condition: template
-            value_template: >
+            value_template: |
               {{
-                button_map[trigger.event.data.property_key_name] == 'I1' and
-                trigger.event.data.value == 'KeyPressed'
+                trigger.event.data.device_id == zwavejs_device and
+                button_map[trigger.event.data.property_key_name] is defined
               }}
-          sequence: !input I1_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I1' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input I1_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I1' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input I1_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O1' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input O1_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O1' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input O1_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O1' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input O1_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I2' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input I2_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I2' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input I2_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I2' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input I2_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O2' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input O2_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O2' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input O2_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O2' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input O2_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I3' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input I3_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I3' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input I3_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I3' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input I3_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O3' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input O3_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O3' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input O3_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O3' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input O3_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I4' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input I4_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I4' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input I4_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'I4' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input I4_key_released
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O4' and
-                trigger.event.data.value == 'KeyPressed'
-              }}
-          sequence: !input O4_key_pressed
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O4' and
-                trigger.event.data.value == 'KeyHeldDown'
-              }}
-          sequence: !input O4_key_held_down
-        - conditions:
-          - condition: template
-            value_template: >
-              {{
-                button_map[trigger.event.data.property_key_name] == 'O4' and
-                trigger.event.data.value == 'KeyReleased'
-              }}
-          sequence: !input O4_key_released
-  default: []
+        sequence:
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I1' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: I1_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I1' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: I1_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I1' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: I1_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O1' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: O1_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O1' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: O1_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O1' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: O1_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I2' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: I2_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I2' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: I2_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I2' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: I2_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O2' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: O2_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O2' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: O2_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O2' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: O2_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I3' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: I3_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I3' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: I3_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I3' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: I3_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O3' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: O3_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O3' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: O3_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O3' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: O3_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I4' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: I4_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I4' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: I4_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'I4' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: I4_key_released
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O4' and
+                        trigger.event.data.value == 'KeyPressed'
+                      }}
+                sequence: O4_key_pressed
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O4' and
+                        trigger.event.data.value == 'KeyHeldDown'
+                      }}
+                sequence: O4_key_held_down
+              - conditions:
+                  - condition: template
+                    value_template: >
+                      {{
+                        button_map[trigger.event.data.property_key_name] == 'O4' and
+                        trigger.event.data.value == 'KeyReleased'
+                      }}
+                sequence: O4_key_released
+    default: []
