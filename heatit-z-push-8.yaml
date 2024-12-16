@@ -209,7 +209,6 @@ action:
               }}
         sequence:
           - choose:
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -234,7 +233,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input I1_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -259,7 +257,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input O1_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -284,7 +281,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input I2_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -309,7 +305,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input O2_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -334,7 +329,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input I3_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -359,7 +353,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input O3_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
@@ -384,7 +377,6 @@ action:
                         trigger.event.data.value == 'KeyReleased'
                       }}
                 sequence: !input I4_key_released
-
               - conditions:
                   - condition: template
                     value_template: >
