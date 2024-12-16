@@ -189,23 +189,12 @@ variables:
   button_selector: !input button_selector
   button: Scene 00{{button_selector}}
 action:
-  - variables:
-      button_map:
-        001: I1
-        002: O1
-        003: I2
-        004: O2
-        005: I3
-        006: O3
-        007: I4
-        008: O4
 - choose:
   - conditions:
     - condition: template
       value_template: >
         {{
-          trigger.event.data.device_id == zwavejs_device and
-          button_map[trigger.event.data.property_key_name] is defined
+          trigger.event.data.device_id == zwavejs_device
         }}
     sequence:
     - choose:
@@ -213,7 +202,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '001' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input I1_key_pressed
@@ -221,7 +211,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '001' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input I1_key_held_down
@@ -229,15 +220,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '001' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input I1_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '002' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input O1_key_pressed
@@ -245,7 +239,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '002' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input O1_key_held_down
@@ -253,15 +248,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O1' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '001' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input O1_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '003' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input I2_key_pressed
@@ -269,7 +267,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '003' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input I2_key_held_down
@@ -277,15 +276,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '003' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input I2_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '004' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input O2_key_pressed
@@ -293,7 +295,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '004' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input O2_key_held_down
@@ -301,15 +304,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O2' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '004' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input O2_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '005' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input I3_key_pressed
@@ -317,7 +323,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '005' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input I3_key_held_down
@@ -325,15 +332,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '005' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input I3_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '006' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input O3_key_pressed
@@ -341,7 +351,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '006' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input O3_key_held_down
@@ -349,15 +360,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O3' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '006' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input O3_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '007' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input I4_key_pressed
@@ -365,7 +379,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '007' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input I4_key_held_down
@@ -373,15 +388,18 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'I4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '007' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input I4_key_released
+
       - conditions:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '008' and
               trigger.event.data.value == 'KeyPressed'
             }}
         sequence: !input O4_key_pressed
@@ -389,7 +407,8 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '008' and
               trigger.event.data.value == 'KeyHeldDown'
             }}
         sequence: !input O4_key_held_down
@@ -397,8 +416,10 @@ action:
         - condition: template
           value_template: >
             {{
-              button_map[trigger.event.data.property_key_name] == 'O4' and
+              trigger.event.data.device_id == zwavejs_device and
+              trigger.event.data.property_key_name == '008' and
               trigger.event.data.value == 'KeyReleased'
             }}
         sequence: !input O4_key_released
-  default: []
+
+    default: []
