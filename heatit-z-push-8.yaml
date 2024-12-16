@@ -39,8 +39,7 @@ blueprint:
         action: {}
     I1_key_released:
       name: ON (I) Released
-      description: Action to run when Top Row ON (I) button is released after being held
-        down.
+      description: Action to run when Top Row ON (I) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -58,8 +57,7 @@ blueprint:
         action: {}
     O1_key_released:
       name: Top OFF (O) Released
-      description: Action to run when Top Row OFF (O) button is released after being held
-        down.
+      description: Action to run when Top Row OFF (O) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -77,8 +75,7 @@ blueprint:
         action: {}
     I2_key_released:
       name: Second Row ON (I) Released
-      description: Action to run when Second Row ON (I) button is released after being
-        held down.
+      description: Action to run when Second Row ON (I) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -96,8 +93,7 @@ blueprint:
         action: {}
     O2_key_released:
       name: Second Row OFF (O) Released
-      description: Action to run when Second Row OFF (O) button is released after being
-        held down.
+      description: Action to run when Second Row OFF (O) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -115,8 +111,7 @@ blueprint:
         action: {}
     I3_key_released:
       name: Third Row ON (I) Released
-      description: Action to run when Third Row ON (I) button is released after being
-        held down.
+      description: Action to run when Third Row ON (I) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -134,8 +129,7 @@ blueprint:
         action: {}
     O3_key_released:
       name: Third Row OFF (O) Released
-      description: Action to run when Third Row OFF (O) button is released after being
-        held down.
+      description: Action to run when Third Row OFF (O) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -153,8 +147,7 @@ blueprint:
         action: {}
     I4_key_released:
       name: Bottom Row ON (I) Released
-      description: Action to run when Bottom Row ON (I) button is released after being
-        held down.
+      description: Action to run when Bottom Row ON (I) button is released after being held down.
       default: []
       selector:
         action: {}
@@ -172,8 +165,7 @@ blueprint:
         action: {}
     O4_key_released:
       name: Bottom Row OFF (O) Released
-      description: Action to run when Bottom Row OFF (O) button is released after being
-        held down.
+      description: Action to run when Bottom Row OFF (O) button is released after being held down.
       default: []
       selector:
         action: {}
