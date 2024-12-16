@@ -1,1 +1,190 @@
-to be filled
+blueprint:
+  name: Z-Wave JS - Heatit Z Push Button 8
+  description: 'Create automations for Heatit 8-Button Wall Controller [HEATIT-ZPUSH8](https://documents.heatit.com/4512581)
+    using the Z-Wave JS integration.
+
+    The buttons are labelled assuming the LED is positioned at the top of the device.
+
+    The automations supports the following triggers for each button:
+
+    * Pressed
+
+    * Held Down
+
+    * Released
+
+    '
+  domain: automation
+  input:
+    zwavejs_device:
+      name: ZWaveJS Device
+      description: List of available Heatit Z Push 8 Button devices.
+      selector:
+        device:
+          integration: zwave_js
+          manufacturer: Heatit
+          model: Z Push Button 8
+          multiple: false
+    I1_key_pressed:
+      name: Top ON (I) Key Pressed
+      description: Action to run when Top Row ON (I) button is pressed
+      default: []
+      selector:
+        action: {}
+    I1_key_held_down:
+      name: Top ON (I) Held Down
+      description: Action to run when Top Row ON (I) button is held down
+      default: []
+      selector:
+        action: {}
+    I1_key_released:
+      name: ON (I) Released
+      description: Action to run when Top Row ON (I) button is released after being held
+        down.
+      default: []
+      selector:
+        action: {}
+    O1_key_pressed:
+      name: Top OFF (O) Key Pressed
+      description: Action to run when Top Row OFF (O) button is pressed
+      default: []
+      selector:
+        action: {}
+    O1_key_held_down:
+      name: Top OFF (O) Held Down
+      description: Action to run when Top Row OFF (O) button is held down
+      default: []
+      selector:
+        action: {}
+    O1_key_released:
+      name: Top OFF (O) Released
+      description: Action to run when Top Row OFF (O) button is released after being held
+        down.
+      default: []
+      selector:
+        action: {}
+    I2_key_pressed:
+      name: Second Row ON (I) Key Pressed
+      description: Action to run when Second Row ON (I) button is pressed
+      default: []
+      selector:
+        action: {}
+    I2_key_held_down:
+      name: Second Row ON (I) Held Down
+      description: Action to run when Second Row ON (I) button is held down
+      default: []
+      selector:
+        action: {}
+    I2_key_released:
+      name: Second Row ON (I) Released
+      description: Action to run when Second Row ON (I) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+    O2_key_pressed:
+      name: Second Row OFF (O) Key Pressed
+      description: Action to run when Second Row OFF (O) button is pressed
+      default: []
+      selector:
+        action: {}
+    O2_key_held_down:
+      name: Second Row OFF (O) Held Down
+      description: Action to run when Second Row OFF (O) button is held down
+      default: []
+      selector:
+        action: {}
+    O2_key_released:
+      name: Second Row OFF (O) Released
+      description: Action to run when Second Row OFF (O) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+    I3_key_pressed:
+      name: Third Row ON (I) Key Pressed
+      description: Action to run when Third Row ON (I) button is pressed
+      default: []
+      selector:
+        action: {}
+    I3_key_held_down:
+      name: Third Row ON (I) Held Down
+      description: Action to run when Third Row ON (I) button is held down
+      default: []
+      selector:
+        action: {}
+    I3_key_released:
+      name: Third Row ON (I) Released
+      description: Action to run when Third Row ON (I) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+    O3_key_pressed:
+      name: Third Row OFF (O) Key Pressed
+      description: Action to run when Third Row OFF (O) button is pressed
+      default: []
+      selector:
+        action: {}
+    O3_key_held_down:
+      name: Third Row OFF (O) Held Down
+      description: Action to run when Third Row OFF (O) button is held down
+      default: []
+      selector:
+        action: {}
+    O3_key_released:
+      name: Third Row OFF (O) Released
+      description: Action to run when Third Row OFF (O) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+    I4_key_pressed:
+      name: Bottom Row ON (I) Key Pressed
+      description: Action to run when Bottom Row ON (I) button is pressed
+      default: []
+      selector:
+        action: {}
+    I4_key_held_down:
+      name: Bottom Row ON (I) Held Down
+      description: Action to run when Bottom Row ON (I) button is held down
+      default: []
+      selector:
+        action: {}
+    I4_key_released:
+      name: Bottom Row ON (I) Released
+      description: Action to run when Bottom Row ON (I) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+    O4_key_pressed:
+      name: Bottom Row OFF (O) Key Pressed
+      description: Action to run when Bottom Row OFF (O) button is pressed
+      default: []
+      selector:
+        action: {}
+    O4_key_held_down:
+      name: Bottom Row OFF (O) Held Down
+      description: Action to run when Bottom Row OFF (O) button is held down
+      default: []
+      selector:
+        action: {}
+    O4_key_released:
+      name: Bottom Row OFF (O) Released
+      description: Action to run when Bottom Row OFF (O) button is released after being
+        held down.
+      default: []
+      selector:
+        action: {}
+  source_url: https://github.com/royvandongen/Heatit-z-push-8-blueprint-hass/blob/master/heatit-z-push-8.yaml
+mode: single
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: zwave_js_value_notification
+variables:
+  logger: blueprint.zwavejs_scene_activation
+  zwavejs_device: !input zwavejs_device
+  button_selector: !input button_selector
+  button: Scene 00{{button_selector}}
