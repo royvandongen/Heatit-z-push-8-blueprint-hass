@@ -220,11 +220,15 @@ action:
           - choose:
               - conditions:
                   - condition: template
-                    value_template: >
-                      {{
-                        is_defined(
-                          (button_id ~ '_' ~ action_type) | lower | replace(' ', '_') | selectattr('input')
-                        )
-                      }}
-                sequence: !input "{{ button_id }}_{{ action_type }}"
+                    value_template: "{{ action_type == 'key_pressed' }}"
+                sequence: !input "{{ button_id }}_key_pressed"
+              - conditions:
+                  - condition: template
+                    value_template: "{{ action_type == 'key_held_down' }}"
+                sequence: !input "{{ button_id }}_key_held_down"
+              - conditions:
+                  - condition: template
+                    value_template: "{{ action_type == 'key_released' }}"
+                sequence: !input "{{ button_id }}_key_released"
+
 
