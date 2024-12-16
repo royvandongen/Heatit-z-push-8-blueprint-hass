@@ -401,4 +401,4 @@ action:
                       trigger.event.data.value == 'KeyReleased'
                     }}
               sequence: !input O4_key_released
-          default: []
+        default: []
