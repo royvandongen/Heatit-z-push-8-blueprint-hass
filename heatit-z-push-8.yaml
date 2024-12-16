@@ -186,8 +186,6 @@ trigger:
 variables:
   logger: blueprint.zwavejs_scene_activation
   zwavejs_device: !input zwavejs_device
-  button_selector: !input button_selector
-  button: Scene 00{{button_selector}}
 action:
 - choose:
   - conditions:
